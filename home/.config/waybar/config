@@ -16,7 +16,7 @@
         "icon-size": 21,
         "format": "{icon} {name}",
         "format-icons": {
-            "1:web": "",
+            "1:web": "",
             "2:code": "",
             "3:term": "",
             "4:work": "",
