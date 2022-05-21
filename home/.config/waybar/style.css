@@ -1,8 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Ubuntu Nerd Font";
-    font-size: 13px;
+    font-family: "Font Awesome 6 Free";
+    font-size: 12px;
     min-height: 0;
 }
 
@@ -13,13 +13,12 @@ window#waybar {
 
 #window {
     font-weight: bold;
-    font-family: "Ubuntu";
+    font-family: "WenQuanYi Micro Hei Mono Light";
 }
-/*
+
 #workspaces {
-    padding: 0 5px;
+    /* padding: 0 0 0 0px; */
 }
-*/
 
 #workspaces button {
     padding: 0 5px;

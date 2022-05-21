@@ -3,14 +3,18 @@
     "position": "top", // Waybar at the bottom of your screen
     "height": 24, // Waybar height
     // "width": 1366, // Waybar width
+
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["sway/window"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+
+    // modules configure
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
-        "format": "{icon}",
+        "icon-size": 21,
+        "format": "{icon} {name}",
         "format-icons": {
             "1:web": "",
             "2:code": "",
