@@ -103,3 +103,12 @@ while read -r name path; do
         *) unknown $name $path ;;
     esac
 done < $tmpf
+
+# install vim plugins
+cat << VIM
+Please install VIM plugins manually with next command:
+
+cd ~/.vim && bash bundle.sh
+
+then open vim and run PluginInstall command
+VIM
