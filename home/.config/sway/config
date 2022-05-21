@@ -21,6 +21,15 @@ set $term alacritty
 # fcitx input method
 exec --no-startup-id fcitx5 -d
 
+font pango:monospace 0
+
+default_border none
+
+titlebar_border_thickness 1
+
+titlebar_padding 1
+
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.

@@ -40,6 +40,15 @@ function ignore() {
     [ ! -z $is_exclude ]
 }
 
+function vim_install_tip() {
+    cat << VIM
+Please install VIM plugins manually with next command:
+
+cd ~/.vim && bash bundle.sh
+
+then open vim and run PluginInstall command
+VIM
+}
 
 function usage() {
     cat << EOHELP
@@ -105,10 +114,6 @@ while read -r name path; do
 done < $tmpf
 
 # install vim plugins
-cat << VIM
-Please install VIM plugins manually with next command:
-
-cd ~/.vim && bash bundle.sh
-
-then open vim and run PluginInstall command
-VIM
+if [ "x$LOCAL_SYS" == "xsys" ]; then
+    vim_install_tip
+fi
