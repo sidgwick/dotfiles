@@ -1,0 +1,17 @@
+window {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #ececec;
+}
+
+#entry {
+  padding: 2px;
+  // border: 2px solid #ff0000;
+}
+
+#input {
+  padding: 5px;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #eceece;
+}
