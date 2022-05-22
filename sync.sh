@@ -10,8 +10,12 @@ function copyfile() {
         mkdir -p $pdir
     fi
 
-    owner=$(stat --format=%U $dst)
-    if [ "x$owner" != "x$USER" ]; then
+    owner=$USER
+    if [ -f $dst ]; then
+        owner=$(stat --format=%U $dst)
+    fi
+
+    if [ ! -z $owner ] && [ "x$owner" != "x$USER" ]; then
         echo "file $dst owner is $owner, require super user pervillage to copy it"
         sudo cp $src $dst
     else
