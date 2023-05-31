@@ -1,3 +1,6 @@
 [user]
 	email = song@iuwei.fun
 	name = Zhigang Song
+[core]
+	pager = less -F -X
+	quotepath = false

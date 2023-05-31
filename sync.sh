@@ -62,48 +62,34 @@ VIM
 
 function usage() {
     cat << EOHELP
-Usage: $0 [OPTIONS]
+Usage: $0 -t [OPTIONS]
 
 Options:
-    -l, --local    sync sys to local
-    -s, --sys      sync local to sys
+    -t, --target   sync to <local or system> folder
 EOHELP
 }
 
-LOCAL_SYS=unset
+target=unset
 
-TEMP=`getopt -o ls --long local,sys -- "$@"`
+TEMP=`getopt -o t: --long target: -- "$@"`
 eval set -- "$TEMP"
 
 while true ; do
     case "$1" in
-        -l|--local) LOCAL_SYS=local; shift ;;
-        -s|--sys) LOCAL_SYS=sys ; shift ;;
+        -t|--target) target=$2; shift ; shift ;;
         --) shift ; break ;;
         *) usage; exit 1 ;;
     esac
 done
 
 # show usage if missed copy option
-if [ "x$LOCAL_SYS" == "xunset" ]; then
+if [ "x$target" == "xunset" ]; then
     usage
     exit 2
 fi
 
-
 # default copy from sys to repo
-src_etc=etc
-src_home=home
-dst_etc=/etc
-dst_home=~
-
-if [ "x$LOCAL_SYS" == "xlocal" ]; then
-    src_etc=/etc
-    src_home=~
-    dst_etc=etc
-    dst_home=home
-fi
-
+path_map=(/etc:etc ~:home)
 tmpf=$(mktemp)
 find . -type f ! -path './.git/*' | sed 's/^.\///;s/\// /' > $tmpf
 
@@ -112,18 +98,29 @@ while read -r name path; do
         continue
     fi
 
-    case "$name" in
-        etc)
-            copyfile $src_etc/$path $dst_etc/$path
-            ;;
-        home)
-            copyfile $src_home/$path $dst_home/$path
-            ;;
-        *) unknown $name $path ;;
-    esac
+    for _path in ${path_map[@]}
+    do
+        sys=$(echo $_path | cut -d':' -f1)
+        _local=$(echo $_path | cut -d':' -f2)
+
+        src=$sys
+        dst=$_local
+
+        if [ "x$target" == "xsys" ]; then
+            _dst=$dst
+            dst=$src
+            src=$dst
+        fi
+
+        if [ "x$_local" != "x$name" ]; then
+            continue
+        fi
+
+        copyfile $src/$path $dst/$path
+    done
 done < $tmpf
 
 # install vim plugins
-if [ "x$LOCAL_SYS" == "xsys" ]; then
+if [ "x$target" == "xsys" ]; then
     vim_install_tip
 fi
