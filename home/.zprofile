@@ -3,6 +3,7 @@ export HOMEBREW_CASK_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-cask
 
 export LESSCHARSET=utf-8 #设置 Shell 临时环境变量
 
+export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/usr/local/share/python:$PATH
 
