@@ -1,4 +1,3 @@
-export PATH=~/.bin:$PATH
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export HOMEBREW_CASK_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-cask
 
