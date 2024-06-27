@@ -15,6 +15,8 @@ function copyfile() {
         owner=$(stat --format=%U $dst)
     fi
 
+    echo "copy $src to $dst ..."
+
     if [ ! -z $owner ] && [ "x$owner" != "x$USER" ]; then
         echo "file $dst owner is $owner, require super user pervillage to copy it"
         sudo cp $src $dst
@@ -106,10 +108,10 @@ while read -r name path; do
         src=$sys
         dst=$_local
 
-        if [ "x$target" == "xsys" ]; then
+        if [ "x$target" == "xsystem" ]; then
             _dst=$dst
             dst=$src
-            src=$dst
+            src=$_dst
         fi
 
         if [ "x$_local" != "x$name" ]; then
@@ -121,6 +123,6 @@ while read -r name path; do
 done < $tmpf
 
 # install vim plugins
-if [ "x$target" == "xsys" ]; then
+if [ "x$target" == "xsystem" ]; then
     vim_install_tip
 fi
